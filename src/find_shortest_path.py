@@ -1,15 +1,24 @@
+from collections import deque
 def find_shortest_path(maze, start, end):
+    rows, cols = len(maze), len(maze[0])
+    visited = set()
+    queue = deque([start])
+    path = [start]
+    while queue:
+        current = queue.popleft()
+        print(current)
+        visited.add(current)
 
-  if start == end:
-    return [start]
+        if current == end:
+            return path
 
-  if not (0 <= start[0] < len(maze) and 0 <= start[1] < len(maze[0]) and maze[start[0]][start[1]] == 1):
+        for dx, dy in [(0, -1), (-1, 0), (0, 1), (1, 0)]:
+            next_point = (current[0] + dx, current[1] + dy)
+
+            if 0 <= next_point[0] < rows and 0 <= next_point[1] < cols and maze[next_point[0]][next_point[1]] == 1 and next_point not in visited:
+                queue.append(next_point)
+                path.append(next_point)
+                visited.add(next_point)
+
     return []
 
-  for direction in [(0, -1), (-1, 0), (0, 1), (1, 0)]:
-    next_point = (start[0] + direction[0], start[1] + direction[1])
-    path = find_shortest_path(start, next_point, end)
-    if path:
-      return [start] + path
-
-  return []
