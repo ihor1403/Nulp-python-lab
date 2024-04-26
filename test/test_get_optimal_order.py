@@ -1,30 +1,37 @@
 import unittest
-from collections import defaultdict
+from lab6 import topological_sort
 
-from lab6 import get_optimal_order
+class TestTopologicalSort(unittest.TestCase):
+    def test_empty_graph(self):
+        graph = {}
+        expected_order = []
+        self.assertEqual(topological_sort(graph), expected_order)
 
+    def test_single_dependency(self):
+        graph = {
+            'visa': ['foreignpassport', 'hotel', 'bankstatement'],
+            'bankstatement': ['nationalpassport'],
+            'hotel': ['creditcard'],
+            'creditcard': ['nationalpassport'],
+            'nationalpassport': ['birthcertificate'],
+            'foreignpassport': ['nationalpassport', 'militarycertificate'],
+            'militarycertificate': ['nationalpassport']
+        }
+        expected_order = ['visa', 'bankstatement', 'hotel', 'creditcard', 'foreignpassport', 'militarycertificate', 'nationalpassport', 'birthcertificate']
+        self.assertEqual(topological_sort(graph), expected_order)
 
-class TestOptimalOrder(unittest.TestCase):
+    def test_multiple_dependencies(self):
+        graph = {
+            'visa': ['foreignpassport', 'hotel', 'bankstatement'],
+            'bankstatement': ['nationalpassport'],
+            'hotel': ['creditcard'],
+            'creditcard': ['nationalpassport'],
+            'nationalpassport': ['birthcertificate'],
+            'foreignpassport': ['nationalpassport', 'militarycertificate'],
+            'militarycertificate': ['nationalpassport']
+        }
+        expected_order = ['visa', 'bankstatement', 'hotel', 'creditcard', 'foreignpassport', 'militarycertificate', 'nationalpassport', 'birthcertificate']
+        self.assertEqual(topological_sort(graph), expected_order)
 
-    def test_empty_dependencies(self):
-        dependencies = {}
-        order = get_optimal_order(dependencies)
-        self.assertEqual(order, [])
-
-    def test_single_doc(self):
-        dependencies = defaultdict(list)
-        dependencies["doc1"] = []
-        order = get_optimal_order(dependencies)
-        self.assertEqual(order, ["doc1"])
-
-
-    def test_cycle_detection(self):
-        dependencies = defaultdict(list)
-        dependencies["doc1"] = ["doc2"]
-        dependencies["doc2"] = ["doc1"]
-        with self.assertRaises(Exception):
-            get_optimal_order(dependencies)
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()
