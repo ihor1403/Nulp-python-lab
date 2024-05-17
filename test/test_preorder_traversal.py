@@ -1,6 +1,5 @@
 import unittest
-from preorder_traversal import BinaryTree
-from preorder_traversal import pre_order_traversal
+from src.preorder_traversal import pre_order_traversal, BinaryTree
 
 class TestPreOrderTraversal(unittest.TestCase):
     def test_pre_order_traversal(self):

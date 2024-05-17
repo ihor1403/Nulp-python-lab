@@ -1,5 +1,5 @@
 import unittest
-from get_optimal_order import topological_sort
+from src.get_optimal_order import topological_sort
 
 class TestTopologicalSort(unittest.TestCase):
     def test_empty_graph(self):

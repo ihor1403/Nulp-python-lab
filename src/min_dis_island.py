@@ -76,4 +76,4 @@ def write_to_output_file(file_name, value):
 
 
 if __name__ == '__main__':
-    find_min_len_cable_in_the_island('../resources/islands_empty.csv','../resources/islands_empty.out')
+    find_min_len_cable_in_the_island('../src/resources/islands_empty.csv','../src/resources/islands_empty.out')

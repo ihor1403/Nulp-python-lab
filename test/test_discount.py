@@ -1,5 +1,5 @@
 import unittest
-from discount.py import total_with_discount
+from src.discount import total_with_discount
 
 
 class TestTotalWithDiscount(unittest.TestCase):

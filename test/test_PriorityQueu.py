@@ -1,5 +1,5 @@
 import unittest
-from PriorityQueue import PriorityQueue
+from src.PriorityQueue import PriorityQueue
 
 if __name__ == "__main__":
   unittest.main()
