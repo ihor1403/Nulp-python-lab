@@ -1,5 +1,5 @@
 import unittest
-from lab8 import find_min_len_cable_in_the_island
+from min_dis_island import find_min_len_cable_in_the_island
 
 
 class VehicleInternetTest(unittest.TestCase):
