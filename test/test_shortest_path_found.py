@@ -1,5 +1,5 @@
 import unittest
-from lab7 import find_shortest_path
+from find_shortest_path import find_shortest_path
 
 class TestFindShortestPath(unittest.TestCase):
     def test_shortest_path_found(self):
